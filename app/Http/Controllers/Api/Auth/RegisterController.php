@@ -29,10 +29,11 @@ class RegisterController extends Controller
         ]);
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        Mail::to($user)->send(new EmailVerification($user));
+        // Mail::to($user)->send(new EmailVerification($user));
         return response()->json([
             'access_token' => $token,
-            'token_type' => 'Bearer'
+            'token_type' => 'Bearer',
+            'user'=>$user,
         ], 200);
     }
 }
